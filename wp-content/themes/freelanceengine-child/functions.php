@@ -54,7 +54,7 @@ add_action( 'admin_enqueue_scripts', function ( $hook )
  */
 add_filter('posts_where', 'no_private_profiles');
 function no_private_profiles($where) {
-    if(is_archive()) {
+    if(is_archive() && !is_admin()) {
         global $wpdb;
         return " $where AND {$wpdb->posts}.post_status != 'private' ";
     }

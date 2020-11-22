@@ -30,7 +30,7 @@ $attachment = get_children( array(
 
 <div class="project-detail-box no-padding">
     <div class="project-detail-desc">
-        <h4><?php _e( 'Project Desciption', ET_DOMAIN ); ?></h4>
+        <h4><?php _e( 'Project Description', ET_DOMAIN ); ?></h4>
         <p><?php the_content(); ?></p>
 		<?php
 		if ( ! empty( $attachment ) ) {

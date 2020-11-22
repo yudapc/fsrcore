@@ -191,7 +191,7 @@ global $current_user;
                             </ul>
                         </li>
                         <li class="fre-menu-employer dropdown">
-                            <a><?php _e( 'EMPLOYERS', ET_DOMAIN ); ?><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <a>TALENT <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                             <ul class="dropdown-menu">
                                 
                                 <li>
@@ -217,7 +217,7 @@ global $current_user;
                                                                              aria-hidden="true"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="<?php echo et_get_page_link( "my-project" ); ?>"><?php _e( 'All Jobs Posted', ET_DOMAIN ); ?></a>
+                                        <a href="<?php echo get_post_type_archive_link( PROJECT ); ?>"><?php _e( 'All Jobs Posted', ET_DOMAIN ); ?></a>
                                     </li>
                                     <li>
                                         <a href="<?php echo et_get_page_link( 'submit-project' ); ?>"><?php _e( 'Post a Job', ET_DOMAIN ); ?></a>
