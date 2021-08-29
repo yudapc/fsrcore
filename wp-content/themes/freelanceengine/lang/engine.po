@@ -9297,7 +9297,7 @@ msgid "Home"
 msgstr ""
 
 #: template/single-project-content.php:33
-msgid "Project Description"
+msgid "Project Desciption"
 msgstr ""
 
 #: template/single-project-content.php:55

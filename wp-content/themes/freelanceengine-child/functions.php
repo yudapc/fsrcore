@@ -49,18 +49,5 @@ add_action( 'admin_enqueue_scripts', function ( $hook )
     wp_enqueue_script( 'admin_scripts', get_stylesheet_directory_uri() . '/assets/js/admin.js', array(), '1.0' );
 } );
 
-/**
- * Prevent private profiles to be shown in the talent list, but still allow direct access.
- */
-add_filter('posts_where', 'no_private_profiles');
-function no_private_profiles($where) {
-    if(is_archive() && !is_admin()) {
-        global $wpdb;
-        return " $where AND {$wpdb->posts}.post_status != 'private' ";
-    }
-
-    return $where;
-}
-
 //Extend parent theme functionality
 require_once dirname(__FILE__) . '/customizer-child/child-functions.php';

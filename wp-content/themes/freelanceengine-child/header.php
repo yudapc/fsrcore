@@ -30,27 +30,11 @@ global $current_user;
 	<?php ae_favicon(); ?>
 	<?php
 	wp_head();
-    ?>
+	if ( function_exists( 'et_render_less_style' ) ) {
+		//et_render_less_style();
+	}
 
-    <?php if(is_page_template('page-login.php')): ?>
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Log in | FullStackRemote">
-    <meta name="description" content="Log in to continue browsing this page.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fsremotestage.wpengine.com/login/">
-    <meta property="og:title" content="Log in | FullStackRemote">
-    <meta property="og:description" content="Log in to continue browsing this page.">
-    <meta property="og:image" content="https://www.fullstackremote.com/wp-content/uploads/2020/09/0.jpeg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fsremotestage.wpengine.com/login/">
-    <meta property="twitter:title" content="Log in | FullStackRemote">
-    <meta property="twitter:description" content="Log in to continue browsing this page.">
-    <meta property="twitter:image" content="https://www.fullstackremote.com/wp-content/uploads/2020/09/0.jpeg">
-    <?php endif; ?>
+	?>
 
 </head>
 
@@ -191,7 +175,7 @@ global $current_user;
                             </ul>
                         </li>
                         <li class="fre-menu-employer dropdown">
-                            <a>TALENT <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <a><?php _e( 'EMPLOYERS', ET_DOMAIN ); ?><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                             <ul class="dropdown-menu">
                                 
                                 <li>
@@ -217,7 +201,7 @@ global $current_user;
                                                                              aria-hidden="true"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="<?php echo get_post_type_archive_link( PROJECT ); ?>"><?php _e( 'All Jobs Posted', ET_DOMAIN ); ?></a>
+                                        <a href="<?php echo et_get_page_link( "my-project" ); ?>"><?php _e( 'All Jobs Posted', ET_DOMAIN ); ?></a>
                                     </li>
                                     <li>
                                         <a href="<?php echo et_get_page_link( 'submit-project' ); ?>"><?php _e( 'Post a Job', ET_DOMAIN ); ?></a>

@@ -4,7 +4,7 @@
  * Description: WP Engine-specific security auditing and logging
  * Author:      wpengine
  * Author URI:  https://wpengine.com
- * Version:     1.0.9
+ * Version:     1.0.10
  *
  * @package wpengine-security-auditor
  */
@@ -186,10 +186,18 @@ class WPEngineSecurityAuditor_Events {
 				$this->log_event( 'upgrader_process_complete_core', $info );
 				break;
 			case 'plugin':
+				if ( ! empty( $info['plugin'] ) ) {
+					$this->log_event( 'upgrader_process_complete_plugin', $info );
+					break;
+				}
 				$plugins = $info['plugins'];
 				unset( $info['plugins'] );
 				if ( ! is_array( $plugins ) ) {
-					$plugins = [ $upgrader->result['destination_name'] ];
+					$plugins = [];
+					/** @var bool|array|WP_Error $upgrader->result */
+					if ( is_array( $upgrader->result ) && ! empty( $upgrader->result['destination_name'] ) ) {
+						$plugins[] = $upgrader->result['destination_name'];
+					}
 				}
 				foreach ( $plugins as $plugin ) {
 					$info['plugin'] = $plugin;
@@ -197,6 +205,10 @@ class WPEngineSecurityAuditor_Events {
 				}
 				break;
 			case 'theme':
+				if ( ! empty( $info['theme'] ) ) {
+					$this->log_event( 'upgrader_process_complete_theme', $info );
+					break;
+				}
 				$themes = $info['themes'];
 				unset( $info['themes'] );
 				if ( ! is_array( $themes ) ) {

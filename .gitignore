@@ -113,3 +113,14 @@ wp-content/mysql.sql
 *.asf
 *.wmv
 *.avi
+fix_permissions_for_local_development.sh
+wp-config-docker.php
+wp-content/themes/twenty*
+
+wp-content/themes/freelanceengine-child/*
+wp-content/themes/freelanceengine-child/*
+wp-content/themes/freelanceengine-child/*
+wp-content/themes/freelanceengine-child/*
+wp-content/themes/freelanceengine-child/*
+wp-content/themes/freelanceengine-child/*
+wp-content/mu-plugins/*

@@ -259,7 +259,7 @@ foreach ( $users as $user ) {
 */
 wp_footer();
 ?>
-<?php if(!is_page_template('page-login.php')): ?>
+
 <script type="text/template" id="ae_carousel_template">
     <li class="image-item" id="{{= attach_id }}">
         <div class="attached-name"><p>{{= name }}</p></div>
@@ -328,13 +328,13 @@ wp_footer();
     </div><!-- /.modal-dialog login -->
 </div><!-- /.modal -->
 <!--// MODAL CLOSE PROJECT-->
-<?php endif; ?>
 
 <style>
     /*.project-number-bids, .jobs-date, .jobs-price, .rate-it, .fre-input-field.project-number-worked, .fre-input-field.fre-budget-field{display: none !important;}*/
     .jobs-view{float: right;}
 </style>
 <script>
+        console.log('hello!');
         console.log(jQuery( ".fre-menu-main > li > a" ).html() );
 
         jQuery( ".btn-update-stripe" ).html('Update Payment Method');

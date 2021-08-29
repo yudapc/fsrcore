@@ -369,7 +369,7 @@ function add_talebt_in_profile_list_after_register($result) {
         }
         $new_talent_profile = array(
             'post_title' => $profile_title,
-            'post_status' => 'private',
+            'post_status' => 'publish',
             'post_author' => $user_ID,
             'post_type' => 'fre_profile',
         );
