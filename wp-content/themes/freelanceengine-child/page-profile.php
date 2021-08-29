@@ -26,7 +26,6 @@ $current_role_conditional = fre_share_role() || $user_role == FREELANCER || $use
 $post_object = $ae_post_factory->get( PROFILE );
 
 $profile_id = get_user_meta( $user_ID, 'user_profile_id', true );
-
 $profile = array();
 if ( $profile_id ) {
 	$profile_post = get_post( $profile_id );
@@ -236,25 +235,25 @@ $currency = ae_get_option( 'currency', array(
 
                                     <div class="fre-input-field">
 										<?php
-										$country_arr = array();
-										if ( ! empty( $profile->tax_input['country'] ) ) {
-											foreach ( $profile->tax_input['country'] as $key => $value ) {
-												$country_arr[] = $value->term_id;
+										$region_arr = array();
+										if ( ! empty( $profile->tax_input['region'] ) ) {
+											foreach ( $profile->tax_input['region'] as $key => $value ) {
+												$region_arr[] = $value->term_id;
 											};
 										}
-										$validate_country = 0;
+										$validate_region = 0;
 										if ( $current_role_conditional ) {
-											$validate_country = 1;
+											$validate_region = 1;
 										}
-										ae_tax_dropdown( 'country',
+										ae_tax_dropdown( 'region',
 											array(
-												'attr'            => 'data-chosen-width="100%" data-validate_filed = "' . $validate_country . '" data-chosen-disable-search="" data-placeholder="' . __( "Choose country", ET_DOMAIN ) . '"',
+												'attr'            => 'data-chosen-width="100%" data-validate_filed = "' . $validate_region . '" data-chosen-disable-search="" data-placeholder="' . __( "Choose region", ET_DOMAIN ) . '"',
 												'class'           => 'fre-chosen-single',
 												'hide_empty'      => 0,
 												'hierarchical'    => false,
-												'id'              => 'country',
-												'selected'        => $country_arr,
-												'show_option_all' => __( "Select country", ET_DOMAIN ),
+												'id'              => 'region',
+												'selected'        => $region_arr,
+												'show_option_all' => __( "Select region", ET_DOMAIN ),
 											)
 										);
 										?>

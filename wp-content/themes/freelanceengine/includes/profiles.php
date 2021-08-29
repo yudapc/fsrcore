@@ -91,8 +91,45 @@ function fre_register_profile() {
 		)
 	);
 	register_taxonomy( 'country', array( PROFILE, PROJECT ), $args );
+	$labels = array(
+		'name'                  => _x( 'Regions', 'Taxonomy plural name', ET_DOMAIN ),
+		'singular_name'         => _x( 'Region', 'Taxonomy singular name', ET_DOMAIN ),
+		'search_items'          => __( 'Search regions', ET_DOMAIN ),
+		'popular_items'         => __( 'Popular regions', ET_DOMAIN ),
+		'all_items'             => __( 'All regions', ET_DOMAIN ),
+		'parent_item'           => __( 'Parent region', ET_DOMAIN ),
+		'parent_item_colon'     => __( 'Parent region', ET_DOMAIN ),
+		'edit_item'             => __( 'Edit region', ET_DOMAIN ),
+		'update_item'           => __( 'Update region ', ET_DOMAIN ),
+		'add_new_item'          => __( 'Add New region ', ET_DOMAIN ),
+		'new_item_name'         => __( 'New region Name', ET_DOMAIN ),
+		'add_or_remove_items'   => __( 'Add or remove region', ET_DOMAIN ),
+		'choose_from_most_used' => __( 'Choose from most used enginetheme', ET_DOMAIN ),
+		'menu_name'             => __( 'Regions', ET_DOMAIN ),
+	);
+	$args = array(
+		'labels'            => $labels,
+		'public'            => true,
+		'show_in_nav_menus' => true,
+		'show_admin_column' => true,
+		'hierarchical'      => true,
+		'show_tagcloud'     => true,
+		'show_ui'           => true,
+		'query_var'         => true,
+		'rewrite'           => array(
+			'slug' => ae_get_option( 'region_slug', 'region' )
+		),
+		'query_var'         => true,
+		'capabilities'      => array(
+			'manage_terms',
+			'edit_terms',
+			'delete_terms',
+			'assign_terms'
+		)
+	);
+	register_taxonomy( 'region', array( PROFILE, PROJECT ), $args );
 	global $ae_post_factory;
-	$ae_post_factory->set( PROFILE, new AE_Posts( PROFILE, array( 'project_category', 'skill', 'country' ), array(
+	$ae_post_factory->set( PROFILE, new AE_Posts( PROFILE, array( 'project_category', 'skill', 'country', 'region' ), array(
 		'et_professional_title',
 		'rating_score',
 		'hour_rate',
