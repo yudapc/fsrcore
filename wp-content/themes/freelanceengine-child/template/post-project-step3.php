@@ -150,13 +150,13 @@
                 <div class="fre-input-field">
                     <label class="fre-field-title" for="project-location"><?php _e('Location (optional)', ET_DOMAIN);?></label>
                     <?php
-                        ae_tax_dropdown( 'country' ,array(
-                                'attr'            => 'data-chosen-width="100%" data-chosen-disable-search="" data-placeholder="'.__("Choose country", ET_DOMAIN).'"',
+                        ae_tax_dropdown( 'region' ,array(
+                                'attr'            => 'data-chosen-width="100%" data-chosen-disable-search="" data-placeholder="'.__("Choose location", ET_DOMAIN).'"',
                                 'class'           => 'fre-chosen-single',
                                 'hide_empty'      => false,
                                 'hierarchical'    => true ,
-                                'id'              => 'country',
-                                'show_option_all' => __("Choose country", ET_DOMAIN)
+                                'id'              => 'region',
+                                'show_option_all' => __("Choose location", ET_DOMAIN)
                             )
                         );
                     ?>

@@ -26,6 +26,7 @@ $current_role_conditional = fre_share_role() || $user_role == FREELANCER || $use
 $post_object = $ae_post_factory->get( PROFILE );
 
 $profile_id = get_user_meta( $user_ID, 'user_profile_id', true );
+
 $profile = array();
 if ( $profile_id ) {
 	$profile_post = get_post( $profile_id );
@@ -38,13 +39,13 @@ $current_skills = get_the_terms( $profile, 'skill' );
 //define variables:
 $skills         = isset( $profile->tax_input['skill'] ) ? $profile->tax_input['skill'] : array();
 $job_title      = isset( $profile->et_professional_title ) ? $profile->et_professional_title : '';
-$hour_rate      = isset( $profile->hour_rate ) ? $profile->hour_rate : '';
 $currency       = isset( $profile->currency ) ? $profile->currency : '';
 $experience     = isset( $profile->et_experience ) ? $profile->et_experience : '';
 $hour_rate      = isset( $profile->hour_rate ) ? $profile->hour_rate : '';
 $about          = isset( $profile->post_content ) ? $profile->post_content : '';
 $display_name   = $user_data->display_name;
 $user_available = isset( $user_data->user_available ) && $user_data->user_available == "on" ? 'checked' : '';
+$user_bandwidth = isset( $profile->user_bandwidth ) ? $profile->user_bandwidth : '';
 $country        = isset( $profile->tax_input['country'][0] ) ? $profile->tax_input['country'][0]->name : '';
 $category       = isset( $profile->tax_input['project_category'][0] ) ? $profile->tax_input['project_category'][0]->slug : '';
 $about_content  = isset( $profile->post_content ) ? $profile->post_content : '';
@@ -169,6 +170,17 @@ $currency = ae_get_option( 'currency', array(
                                         </span>
                                     </div>
 
+                                    <div class="freelance-bandwidth">
+                                        <span><?php _e( 'Availability:', ET_DOMAIN ); ?> 
+                                        <?php if ($user_bandwidth == 'full') {
+                                            echo 'Full time';
+                                        }elseif ($user_bandwidth == 'part') {
+                                            echo 'Part time';
+                                        } else {
+                                            echo 'Full time and part time';
+                                        } ?></span>
+                                    </div>
+
 									<?php
 									if ( isset( $profile->tax_input['skill'] ) && $profile->tax_input['skill'] ) {
 										echo '<div class="freelance-skill">';
@@ -180,6 +192,7 @@ $currency = ae_get_option( 'currency', array(
                                         <span class="freelance-empty-skill"><?php _e( 'No skill information', ET_DOMAIN ) ?></span>
 									<?php } ?>
 								<?php } ?>
+		
 
 								<?php if ( ! empty( $profile ) ) { ?>
                                     <div class="freelance-about">
@@ -235,25 +248,25 @@ $currency = ae_get_option( 'currency', array(
 
                                     <div class="fre-input-field">
 										<?php
-										$region_arr = array();
-										if ( ! empty( $profile->tax_input['region'] ) ) {
-											foreach ( $profile->tax_input['region'] as $key => $value ) {
-												$region_arr[] = $value->term_id;
+										$country_arr = array();
+										if ( ! empty( $profile->tax_input['country'] ) ) {
+											foreach ( $profile->tax_input['country'] as $key => $value ) {
+												$country_arr[] = $value->term_id;
 											};
 										}
-										$validate_region = 0;
+										$validate_country = 0;
 										if ( $current_role_conditional ) {
-											$validate_region = 1;
+											$validate_country = 1;
 										}
-										ae_tax_dropdown( 'region',
+										ae_tax_dropdown( 'country',
 											array(
-												'attr'            => 'data-chosen-width="100%" data-validate_filed = "' . $validate_region . '" data-chosen-disable-search="" data-placeholder="' . __( "Choose region", ET_DOMAIN ) . '"',
+												'attr'            => 'data-chosen-width="100%" data-validate_filed = "' . $validate_country . '" data-chosen-disable-search="" data-placeholder="' . __( "Choose country", ET_DOMAIN ) . '"',
 												'class'           => 'fre-chosen-single',
 												'hide_empty'      => 0,
 												'hierarchical'    => false,
-												'id'              => 'region',
-												'selected'        => $region_arr,
-												'show_option_all' => __( "Select region", ET_DOMAIN ),
+												'id'              => 'country',
+												'selected'        => $country_arr,
+												'show_option_all' => __( "Select country", ET_DOMAIN ),
 											)
 										);
 										?>
@@ -274,6 +287,20 @@ $currency = ae_get_option( 'currency', array(
                                             <span>
                                                 <?php echo $currency['icon'] ?><?php _e( '/hr', ET_DOMAIN ) ?></span>
                                         </div>
+
+
+
+                                        <div class="fre-input-field">
+                                            <label for="user_bandwidth"><?php _e( 'Available bandwidth', ET_DOMAIN ) ?></label>
+                                            <select required data-chosen-width="100%" data-validate_filed="<?= $current_role_conditional ? 1 : 0 ?>" data-chosen-disable-search="true" data-placeholder="Choose bandwidth" name='user_bandwidth' id='user_bandwidth' class='fsr-chosen'>
+                                                <option value=""  <?= $user_bandwidth ==""? 'selected':'' ?>><?php _e( 'Please choose a bandwidth', ET_DOMAIN ) ?></option>
+                                                <option value="any" <?= $user_bandwidth =="any"? 'selected':'' ?>>Full time and part time</option>
+                                                <option value="full" <?= $user_bandwidth =="full"? 'selected':'' ?>>Full time only</option>
+                                                <option value="part" <?= $user_bandwidth =="part"? 'selected':'' ?>>Part time only</option>
+                                            </select>
+
+                                            
+                                        </div>                                        
 
                                         <div class="fre-input-field">
 											<?php

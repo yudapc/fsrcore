@@ -214,6 +214,9 @@ global $current_user;
                             </li>
 						<?php } ?>
 					<?php } ?>
+                    <li class="fre-menu-employer dropdown-empty">
+                        <a target="_blank" href="https://calendly.com/fullstackremote/fullstackremote-exploratory/">Call Sales</a>
+                    </li>
                     <!-- Main Menu -->
 					<?php if ( has_nav_menu( 'et_header_standard' ) ) { ?>
                         <li class="fre-menu-page dropdown">
